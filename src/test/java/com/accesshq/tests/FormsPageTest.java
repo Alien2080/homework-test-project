@@ -12,8 +12,7 @@ class FormsPageTest extends BaseTestSuite {
 	void testMandatoryErrorMessagesArePresentWhenFieldsAreInvalid() throws Exception {
 		
 		// Arrange
-		HomePage homePage = new HomePage(driver);
-		FormsPage formsPage = homePage.clickFormsMenuItem();
+		FormsPage formsPage = FormsPageTest.getFormsPage();
 		
 		// Act
 		formsPage.clickSubmitButton();
@@ -28,8 +27,7 @@ class FormsPageTest extends BaseTestSuite {
 	void testMandatoryErrorMessagesAreRemovedWhenFieldsAreValid() throws Exception {
 		
 		// Arrange
-		HomePage homePage = new HomePage(driver);
-		FormsPage formsPage = homePage.clickFormsMenuItem();
+		FormsPage formsPage = FormsPageTest.getFormsPage();
 		
 		// Act
 		formsPage.setName("Dan");
@@ -42,4 +40,26 @@ class FormsPageTest extends BaseTestSuite {
 		Assertions.assertEquals("", formsPage.getAgreeErrorMessage());
 	}
 
+	@Test
+	void testSuccessfulSubmission() throws Exception {
+		
+		// Arrange
+		FormsPage formsPage = FormsPageTest.getFormsPage();
+		
+		// Act
+		String name = "Dan";
+		formsPage.setName(name);
+		formsPage.setEmail("dan@abc.com");
+		formsPage.clickAgree();
+		formsPage.clickSubmitButton();
+		
+		// Assert
+		Assertions.assertEquals("Thanks for your feedback " + name, formsPage.getPopupMessage());
+	}
+	
+	private static FormsPage getFormsPage() {
+		HomePage homePage = new HomePage(driver);
+		return homePage.clickFormsMenuItem();
+	}
+	
 }

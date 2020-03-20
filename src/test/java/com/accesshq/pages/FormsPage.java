@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FormsPage extends BasePage {
 
@@ -70,5 +72,13 @@ public class FormsPage extends BasePage {
 
 	public void clickAgree() {
 		driver.findElement(By.cssSelector("[for='agree']")).click();
+	}
+
+	public String getPopupMessage() {
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.className("popup-message")));
+		
+		return driver.findElement(By.className("popup-message")).getText();
 	}
 }

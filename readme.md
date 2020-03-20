@@ -5,13 +5,15 @@
 This is a demo project to learn about automated testing using the Selenium WebDriver.  
 https://www.selenium.dev/projects/
 
+[To discuss](discussion.md)
+
 # Tests
 This section describes the tests that are contained within this project.
 ## Web Playground Test
+https://d1iw6mb9di5l9r.cloudfront.net/  
 This list is the test that are written for the Web Playground webpage, which was provided by AccessHQ as part of a code camp.
-https://d1iw6mb9di5l9r.cloudfront.net/
 
-## Froms Page
+## Forms Page
 
 ### Manadatory Error Messages
 1. Click the 'FORMS' menu item
