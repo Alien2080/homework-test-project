@@ -5,6 +5,7 @@ package com.accesshq.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * @author Tom Aylen
@@ -13,14 +14,16 @@ import org.openqa.selenium.WebDriver;
 public abstract class BasePage {
 	
 	protected WebDriver driver;
+	protected WebDriverWait wait;
 	
-	public BasePage(WebDriver driver) {
+	public BasePage(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
+		this.wait = wait;
 	}
 
 	public FormsPage clickFormsMenuItem() {
-		driver.findElement(By.cssSelector(".v-toolbar__items [aria-label='forms']")).click();
-		return new FormsPage(driver);
+		this.driver.findElement(By.cssSelector(".v-toolbar__items [aria-label='forms']")).click();
+		return new FormsPage(this.driver, this.wait);
 	}
 	
 }

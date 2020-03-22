@@ -34,3 +34,16 @@ This list is the test that are written for the Web Playground webpage, which was
 4. Click the 'agree' checkbox
 5. Click the 'SUBMIT' button
 6. Verify that the popup message says 'Thanks for your feedback Dan'
+
+## Home Page
+
+### Hello Greeting
+1. Enter 'Dan' into the Forename field
+2. Click the 'SUBMIT' button
+3. Verify that the popup message says 'Hello Dan'
+
+### State Transition
+1. Click the 'CLICK ME DOWN!' button
+2. Verify that the text changes to 'CLICK ME UP!'
+3. Click it again
+4. Verify that the text changes to 'CLICK ME DOWN!'

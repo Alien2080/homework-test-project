@@ -58,7 +58,7 @@ class FormsPageTest extends BaseTestSuite {
 	}
 	
 	private static FormsPage getFormsPage() {
-		HomePage homePage = new HomePage(driver);
+		HomePage homePage = new HomePage(driver, wait); // , wait);
 		return homePage.clickFormsMenuItem();
 	}
 	

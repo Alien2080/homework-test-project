@@ -1,9 +1,9 @@
 package com.accesshq.pages;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,13 +11,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FormsPage extends BasePage {
 
-	public FormsPage(WebDriver driver) {
-		super(driver);
+	public FormsPage(WebDriver driver, WebDriverWait wait) {
+		super(driver, wait);
 	}
 
 	public void clickSubmitButton() throws Exception {
 
-		List<WebElement> buttons = driver.findElements(By.tagName("button"));
+		List<WebElement> buttons = this.driver.findElements(By.tagName("button"));
 
 		for (WebElement button : buttons) {
 			if (button.getText().equals("SUBMIT")) {
@@ -30,55 +30,47 @@ public class FormsPage extends BasePage {
 	}
 
 	public String getNameErrorMessage() {
-
-		try {
-			return driver.findElement(By.id("name-err")).getText();
-		} catch (NoSuchElementException e) {
-			// If the element is removed, return an empty string
-			return "";
-		}
-
+		return getErrorMessageHelper("name");
 	}
 
 	public String getEmailErrorMessage() {
-
-		try {
-			return driver.findElement(By.id("email-err")).getText();
-		} catch (NoSuchElementException e) {
-			// If the element is removed, return an empty string
-			return "";
-		}
-		
+		return getErrorMessageHelper("email");
 	}
 
 	public String getAgreeErrorMessage() {
-		
-		try {
-			return driver.findElement(By.id("agree-err")).getText();
-		} catch (NoSuchElementException e) {
-			// If the element is removed, return an empty string
-			return "";
-		}
-		
+		return getErrorMessageHelper("agree");
 	}
 
 	public void setName(String name) {
-		driver.findElement(By.id("name")).sendKeys(name);
+		this.driver.findElement(By.id("name")).sendKeys(name);
 	}
 
 	public void setEmail(String email) {
-		driver.findElement(By.id("email")).sendKeys(email);
+		this.driver.findElement(By.id("email")).sendKeys(email);
 	}
 
 	public void clickAgree() {
-		driver.findElement(By.cssSelector("[for='agree']")).click();
+		this.driver.findElement(By.cssSelector("[for='agree']")).click();
 	}
 
 	public String getPopupMessage() {
-		
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.className("popup-message")));
+		this.wait.until(ExpectedConditions.textMatches(
+				By.className("popup-message"),
+				// Matches non-empty string
+				Pattern.compile(".{1,}")));
 		
 		return driver.findElement(By.className("popup-message")).getText();
 	}
+
+	private String getErrorMessageHelper(String idPrefix) {
+
+		List<WebElement> nameErrMessage = this.driver.findElements(By.id(idPrefix + "-err"));
+
+		if (nameErrMessage.size() > 0) {
+			return nameErrMessage.get(0).getText();
+		} else {
+			return "";
+		}
+	}
+
 }
