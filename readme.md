@@ -47,3 +47,28 @@ This list is the test that are written for the Web Playground webpage, which was
 2. Verify that the text changes to 'CLICK ME UP!'
 3. Click it again
 4. Verify that the text changes to 'CLICK ME DOWN!'
+
+### Love List
+1. Find the unordered list item with the text 'List Item 2'
+2. Click the Heart icon within this list item
+3. Verify that the popup message says 'You loved List Item 2'
+
+### Buttons
+1. Click the 'LOGIN' button
+2. Verify that the alert message shows 'You clicked the login button'
+3. Click the 'CANCEL' button
+4. Verify that the alert message shows 'You clicked the cancel button'
+5. Click the 'HOME' button
+6. Verify that the alert message shows 'You clicked the home button'
+7. Click the 'LINK' button
+4. Verify that the alert message shows 'You clicked the link button'
+5. Click the 'UPLOAD' button
+6. Verify that the alert message shows 'You clicked the upload button'
+
+## Login Dialog
+
+### Manadatory Error Message
+1. Click the 'USER' (icon) menu item
+2. Click the 'LOGIN' button in the 'Login' dialog
+3. Verify that the Username error says 'Invalid user and password'
+4. Verify that the Password error says 'Invalid user and password'
