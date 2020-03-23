@@ -38,6 +38,5 @@ public abstract class BasePage {
 		this.driver.findElement(By.cssSelector(".v-toolbar__items [aria-label='planets']")).click();
 		return new PlanetsPage(this.driver, this.wait);
 	}
-
 	
 }
