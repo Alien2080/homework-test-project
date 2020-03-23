@@ -38,11 +38,7 @@ public class HomePage extends BasePage {
 	}
 
 	public String getUpDownButtonText() {
-
-		while (driver.findElements(By.className("animating")).size() > 0) {
-			// Intentionally blank
-		}
-
+		this.wait.until(ExpectedConditions.numberOfElementsToBe(By.className("animating"), 0));
 		return this.driver.findElement(By.cssSelector("[role='button']")).getText();
 	}
 
@@ -79,14 +75,14 @@ public class HomePage extends BasePage {
 
 	public void clickUploadButton() throws Exception {
 		List<WebElement> elements = driver.findElements(By.cssSelector("[type='button']"));
-		
+
 		for (WebElement webElement : elements) {
 			if (webElement.getText().contains("UPLOAD")) {
 				this.wait.until(ExpectedConditions.elementToBeClickable(webElement)).click();
 				return;
 			}
 		}
-		
+
 		throw new Exception("Could not find upload button");
 	}
 
@@ -96,7 +92,6 @@ public class HomePage extends BasePage {
 
 	private String getMessageHelper(String classValue) {
 		this.wait.until(ExpectedConditions.textMatches(By.className(classValue), Pattern.compile(".{1,}")));
-
 		return driver.findElement(By.className(classValue)).getText();
 	}
 

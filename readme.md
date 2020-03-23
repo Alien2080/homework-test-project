@@ -72,3 +72,11 @@ This list is the test that are written for the Web Playground webpage, which was
 2. Click the 'LOGIN' button in the 'Login' dialog
 3. Verify that the Username error says 'Invalid user and password'
 4. Verify that the Password error says 'Invalid user and password'
+
+
+## Planets Page
+
+### Explore
+1. Find the planet 'Neptune'
+2. Click the 'Explore' button
+3. Verify that the alert message shows 'Exploring Neptune'
